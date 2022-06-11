@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "wabpApp",
-    "slug": "wabpApp",
-    "version": "1.0.0",
+    "name": "wabp Reader",
+    "slug": "wabpreader",
+    "version": "2.9.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
@@ -19,8 +19,24 @@
     "ios": {
       "supportsTablet": true
     },
+    "android": {
+      "package": "com.wabp.wabpreader",
+      "versionCode": 12,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "icon": "./assets/icon.png",
+      "permissions": [
+        "WRITE_EXTERNAL_STORAGE",
+        "READ_EXTERNAL_STORAGE",
+        "READ_INTERNAL_STORAGE",
+        "CAMERA"
+      ]
+    },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Ebook Reader for West African Book Publishers Limited"
   }
 }
