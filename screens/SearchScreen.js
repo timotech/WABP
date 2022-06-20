@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
-import { Colors, Layout } from "@shared";
+import { Colors, Layout } from "../shared";
 import React, { Component } from "react";
 import {
   FlatList,

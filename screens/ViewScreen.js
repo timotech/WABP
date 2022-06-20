@@ -1,11 +1,11 @@
-import * as React from "react";
-import { StyleSheet, View, Text, useWindowDimensions } from "react-native";
+import React, { Component } from "react";
+import { StyleSheet, View, Text } from "react-native";
 import { WebView } from "react-native-webview";
 import { Colors, Touchable } from "../shared";
 import { Ionicons } from "@expo/vector-icons";
 import * as Speech from "expo-speech";
 
-export default class ViewScreen extends React.Component {
+export default class ViewScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -107,7 +107,6 @@ export default class ViewScreen extends React.Component {
   }
 
   render() {
-    const { width, height } = useWindowDimensions();
     const html = `
       <html>
       <head>

@@ -5,7 +5,7 @@ import {
   MaterialCommunityIcons,
   MaterialIcons,
 } from "@expo/vector-icons";
-import { Colors, Layout, Touchable } from "@shared";
+import { Colors, Layout, Touchable } from "../shared";
 import React, { Component } from "react";
 import {
   RefreshControl,

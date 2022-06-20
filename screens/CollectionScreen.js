@@ -12,8 +12,6 @@ import {
   ActivityIndicator,
   Alert,
 } from "react-native";
-//import Pick from "../components/Pick";
-//import Best from "../components/Best";
 import Collection from "../components/Collection";
 import NetInfo from "@react-native-community/netinfo";
 import * as FileSystem from "expo-file-system";
@@ -174,11 +172,7 @@ export default class CollectionScreen extends Component {
       const downloadResumable = FileSystem.createDownloadResumable(
         "https://www.wabpreader.com.ng/images/compressed/" + ebookPath + ".txt",
         FileSystem.documentDirectory + ebookPath + ".txt",
-        {
-          headers: {
-            "Content-Type": "*/*",
-          },
-        },
+        {},
         callback
       );
 
@@ -192,7 +186,7 @@ export default class CollectionScreen extends Component {
           this._checkFile(ebookPath, title);
         })
         .catch((error) => {
-          console.error(error);
+          //console.error(error);
           this.setState({ downloading: false });
 
           let tmp = FileSystem.getInfoAsync(
@@ -232,12 +226,18 @@ export default class CollectionScreen extends Component {
   };
 
   viewFile = async (fileUri, title) => {
-    let file = await FileSystem.readAsStringAsync(fileUri, {
-      encoding: "base64",
-    });
+    // let file = await FileSystem.readAsStringAsync(fileUri, {
+    //   encoding: "base64",
+    // });
+    let file = await FileSystem.readAsStringAsync(fileUri);
+    //console.log(file.substring(1, 100));
+    // this.setState({
+    //   base64Code: base64.decode(file),
+    //   downloading: false,
+    // });
 
     this.setState({
-      base64Code: base64.decode(file),
+      base64Code: file,
       downloading: false,
     });
     this.props.navigation.navigate("Views", {
@@ -249,29 +249,29 @@ export default class CollectionScreen extends Component {
   downloadEbookNew = async (ebookPath, title, id) => {
     this.setState({ downloading: true });
 
-    console.log("downloading");
+    //console.log("downloading");
 
-    const callback = (downloadProgress) => {
-      const progress =
-        downloadProgress.totalBytesWritten /
-        downloadProgress.totalBytesExpectedToWrite;
-      this.setState({
-        downloadProgress: progress,
-        writeProgress: downloadProgress.totalBytesWritten,
-        totalProgress: downloadProgress.totalBytesExpectedToWrite,
-      });
-    };
+    // const callback = (downloadProgress) => {
+    //   const progress =
+    //     downloadProgress.totalBytesWritten /
+    //     downloadProgress.totalBytesExpectedToWrite;
+    //   this.setState({
+    //     downloadProgress: progress,
+    //     writeProgress: downloadProgress.totalBytesWritten,
+    //     totalProgress: downloadProgress.totalBytesExpectedToWrite,
+    //   });
+    // };
 
     const { uri } = await FileSystem.downloadAsync(
       "https://www.wabpreader.com.ng/images/compressed/" + ebookPath + ".txt",
       FileSystem.documentDirectory + ebookPath + ".txt"
     )
       .then(({ uri }) => {
-        console.log("Finished downloading to ", uri);
+        //console.log("Finished downloading to ", uri);
         this.viewFile(uri, title);
       })
       .catch((error) => {
-        console.error(error);
+        //console.error(error);
       });
   };
 
@@ -298,31 +298,12 @@ export default class CollectionScreen extends Component {
       );
 
       if (tmp2.exists) {
-        // console.log(
-        //   "File Exists, File Name: ",
-        //   FileSystem.documentDirectory + ebookPath + ".txt"
-        // );
-
-        //console.log("File Details: ", tmp2);
-
-        //let filecontent = await FileSystem.readAsStringAsync(tmp2.uri);
-        //console.log("File Content: " + filecontent);
-
-        let file = await FileSystem.readAsStringAsync(tmp2.uri, {
-          encoding: "base64",
-        });
-
-        this.setState({ base64Code: base64.decode(file) });
-
-        this.props.navigation.navigate("Readers", {
-          base64Code: this.state.base64Code,
-          title: title,
-        });
+        this.viewFile(tmp2.uri, title);
       } else {
         this.downloadEbookNew(ebookPath, title, id);
       }
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
 
@@ -456,8 +437,9 @@ export default class CollectionScreen extends Component {
                 fontSize: 18,
               }}
             >
-              Fetching Ebook for first time use at {this.state.writeProgress}kb
-              of {this.state.totalProgress}kb
+              {/* Fetching Ebook for first time use at {this.state.writeProgress}kb
+              of {this.state.totalProgress}kb */}
+              Fetching Ebook for first time download... Please wait!!!
             </Text>
           </View>
         ) : this.state.isLoading ? (

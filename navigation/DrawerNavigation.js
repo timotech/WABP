@@ -13,7 +13,6 @@ import CollectionScreen from "../screens/CollectionScreen";
 import SearchScreen from "../screens/SearchScreen";
 import EpubScreen from "../screens/EpubScreen";
 import ViewScreen from "../screens/ViewScreen";
-import ReaderScreen from "../screens/ReaderScreen";
 
 import { Platform } from "react-native";
 import { Colors, Layout } from "../shared";
@@ -37,7 +36,6 @@ const screens = {
   Search: { screen: SearchScreen },
   Epub: { screen: EpubScreen },
   Views: { screen: ViewScreen },
-  Readers: { screen: ReaderScreen },
 };
 
 const presets = {

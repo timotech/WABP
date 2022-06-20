@@ -245,8 +245,8 @@ export default class CartScreen extends Component {
                 showPayButton={true}
                 paystackKey="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
                 amount={this.state.total}
-                billingEmail="info@wabp.com.ng"
-                billingMobile="08156934858"
+                billingEmail="xxxxxxxxxxx"
+                billingMobile="xxxxxxxxxx"
                 billingName="West African Book Publishers ltd"
                 ActivityIndicatorColor="green"
                 SafeAreaViewContainer={{ marginTop: 15 }}
@@ -260,7 +260,7 @@ export default class CartScreen extends Component {
                 }}
                 autoStart={false}
                 refNumber={
-                  "wabpLtd" + Math.floor(Math.random() * 1000000000 + 1)
+                  "xxxxxx" + Math.floor(Math.random() * 1000000000 + 1)
                 }
               />
             </View>
